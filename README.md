@@ -1,5 +1,6 @@
 LastSquareStanding
 ==
+Open Source C++ Game
 
 ##How to Build##
 
