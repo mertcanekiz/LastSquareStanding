@@ -21,6 +21,8 @@ public:
     }
     void changeState(int);
     void stop();
+
+    inline SDL_Renderer* getRenderer() { return renderer; }
     
 
 private:

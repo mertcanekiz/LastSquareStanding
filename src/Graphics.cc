@@ -15,6 +15,10 @@ SDL_Texture* Graphics::loadTexture(SDL_Renderer* renderer, const char* filename)
 
 void Graphics::renderTexture(SDL_Renderer* renderer, SDL_Texture* texture, int x, int y)
 {
+    if(texture == nullptr)
+    {
+	exit(1);
+    }
     SDL_Rect dst;
     dst.x = x;
     dst.y = y;

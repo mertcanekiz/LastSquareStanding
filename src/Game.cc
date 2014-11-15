@@ -28,9 +28,11 @@ void Game::render(SDL_Renderer* renderer)
 {
     SDL_SetRenderDrawColor(renderer, 0xaa, 0xaa, 0xaa, 0xff);
     SDL_RenderClear(renderer);
+    player->render(renderer);
 }
 
 void Game::init()
 {
-
+    player = new Player(100, 100);
+    player->init();
 }
