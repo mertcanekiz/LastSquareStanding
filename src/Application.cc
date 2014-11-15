@@ -11,7 +11,10 @@ int Application::execute()
     SDL_Event event;
 
     Uint32 previousTime = SDL_GetTicks();
-
+    
+    currentState = GameState::getStateByID(GameState::SPLASH);
+    currentState->init();
+    
     while(running)
     {
 	Uint32 currentTime = SDL_GetTicks();
@@ -37,18 +40,19 @@ void Application::input(SDL_Event event)
     {
 	stop();
     }
+    currentState->input(event);
 }
 
 void Application::update(float delta)
 {
-
+    currentState->update(delta);
 }
 
 void Application::render()
 {
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xff);
     SDL_RenderClear(renderer);
-
+    currentState->render(renderer);
     SDL_RenderPresent(renderer);
 }
 
@@ -56,6 +60,12 @@ void Application::stop()
 {
     if(!running) return;
     running = false;
+}
+
+void Application::changeState(int id)
+{
+    currentState = GameState::getStateByID(id);
+    currentState->init();
 }
 
 bool Application::initialize()
@@ -91,6 +101,7 @@ bool Application::initialize()
 
 void Application::cleanUp()
 {
+    GameState::cleanUp();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();

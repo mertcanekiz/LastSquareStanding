@@ -4,8 +4,10 @@
 #include <SDL2/SDL.h>
 #include <cstdio>
 
+#include "GameState.h"
+
 #define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+#define SCREEN_HEIGHT 360
 
 class Application
 {
@@ -17,7 +19,9 @@ public:
 	static Application instance;
 	return instance;
     }
+    void changeState(int);
     void stop();
+    
 
 private:
     Application() { };
@@ -26,9 +30,12 @@ private:
     void update(float);
     void render();
     void cleanUp();
+    
     SDL_Window* window;
     SDL_Renderer* renderer;
     bool running;
+
+    GameState* currentState;
 
     Application(const Application&);
     void operator=(const Application&);
