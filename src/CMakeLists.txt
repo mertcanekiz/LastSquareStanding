@@ -1,0 +1,8 @@
+set(CMAKE_CXX_FLAGS "-Wall -std=c++11")
+file(GLOB SRCS *.cc *.h)
+add_executable(${PROJECT_NAME} ${SRCS})
+set(CMAKE_DIR "../cmake")
+include(${CMAKE_DIR}/FindSDL2.cmake)
+include(${CMAKE_DIR}/FindSDL2_image.cmake)
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIR})
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARY})
