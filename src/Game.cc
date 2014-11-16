@@ -23,6 +23,10 @@ void Game::input(SDL_Event event)
 void Game::update(float delta)
 {
     player->update(delta);
+    for(int i = 0; i < enemies.size(); i++)
+    {
+	enemies[i].update(delta);
+    }
 }
 
 void Game::render(SDL_Renderer* renderer)
@@ -30,10 +34,18 @@ void Game::render(SDL_Renderer* renderer)
     SDL_SetRenderDrawColor(renderer, 0xaa, 0xaa, 0xaa, 0xff);
     SDL_RenderClear(renderer);
     player->render(renderer);
+    for(int i = 0; i < enemies.size(); i++)
+    {
+	enemies[i].render(renderer);
+    }
 }
 
 void Game::init()
 {
     player = new Player();
     player->init();
+    for(int i = 0; i < 10; i++)
+    {
+	enemies.push_back(Enemy(i*32, i*16, i, i));
+    }
 }

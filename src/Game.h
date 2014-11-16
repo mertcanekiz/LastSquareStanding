@@ -1,8 +1,10 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <vector>
 #include "GameState.h"
 #include "Player.h"
+#include "Enemy.h"
 
 class Game : public GameState
 {
@@ -18,6 +20,7 @@ public:
 
 private:
     Player* player;
+    std::vector<Enemy> enemies;
 };
 
 #endif

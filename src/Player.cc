@@ -134,6 +134,6 @@ void Player::init()
     if(playerImage == nullptr)
     {
 	//load the image only if it isn't loaded yet
-	playerImage = Graphics::loadTexture(Application::getInstance().getRenderer(), "res/player/player.png"); 
+	playerImage = Graphics::loadTexture(Application::getInstance().getRenderer(), "res/game/player.png"); 
     }
 }
