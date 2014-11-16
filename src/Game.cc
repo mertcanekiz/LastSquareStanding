@@ -17,11 +17,12 @@ void Game::input(SDL_Event event)
 	    break;
 	}
     }
+    player->input(event);
 }
 
 void Game::update(float delta)
 {
-    
+    player->update(delta);
 }
 
 void Game::render(SDL_Renderer* renderer)
@@ -33,6 +34,6 @@ void Game::render(SDL_Renderer* renderer)
 
 void Game::init()
 {
-    player = new Player(100, 100);
+    player = new Player();
     player->init();
 }

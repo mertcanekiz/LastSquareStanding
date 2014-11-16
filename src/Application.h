@@ -6,9 +6,6 @@
 
 #include "GameState.h"
 
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 360
-
 class Application
 {
 
@@ -22,8 +19,10 @@ public:
     void changeState(int);
     void stop();
 
+    static const int SCREEN_WIDTH = 640;
+    static const int SCREEN_HEIGHT = 360;
+
     inline SDL_Renderer* getRenderer() { return renderer; }
-    
 
 private:
     Application() { };
