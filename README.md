@@ -10,4 +10,8 @@ Open Source C++ Game
 cd build
 cmake ..
 make
+
+#to run, create symlink to res folder or:
+cd ..
+./build/lastsquarestanding
 ```
