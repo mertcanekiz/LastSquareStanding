@@ -21,6 +21,7 @@ public:
 private:
     Player* player;
     std::vector<Enemy> enemies;
+    SDL_Texture* backgroundImage;
 };
 
 #endif
