@@ -50,6 +50,8 @@ void Game::init()
     }
     player = new Player();
     player->init();
+
+    //Temporary enemy generation
     for(int i = 0; i < 100; i++)
     {
 	enemies.push_back(Enemy(0, 0, ((float)rand()/(float)RAND_MAX)*5, ((float)rand()/RAND_MAX)*5));
