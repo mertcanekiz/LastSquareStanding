@@ -4,6 +4,7 @@
 Game::Game(int id) : GameState(id)
 {
     backgroundImage = nullptr;
+    srand(time(0));
 }
 
 void Game::input(SDL_Event event)
@@ -49,8 +50,8 @@ void Game::init()
     }
     player = new Player();
     player->init();
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 100; i++)
     {
-	enemies.push_back(Enemy(i*32, i*16, i, i));
+	enemies.push_back(Enemy(0, 0, ((float)rand()/(float)RAND_MAX)*5, ((float)rand()/RAND_MAX)*5));
     }
 }

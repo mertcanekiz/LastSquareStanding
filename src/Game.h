@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 #include "GameState.h"
 #include "Player.h"
 #include "Enemy.h"
