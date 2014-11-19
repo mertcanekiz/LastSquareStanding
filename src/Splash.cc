@@ -21,7 +21,7 @@ void Splash::update(float delta)
 {
     if(SDL_GetTicks() - timer >= SPLASH_TIME)
     {
-	Application::getInstance().changeState(GameState::GAME);
+	Application::getInstance().changeState(GameState::MENU);
     }
 }
 
