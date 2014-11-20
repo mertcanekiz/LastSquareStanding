@@ -40,6 +40,14 @@ void Game::update(float delta)
     {
 	enemies.push_back(Enemy(getRandomPosition(), getRandomVelocity()));
     }
+    
+    timer++;
+    enemyCount = timer / 100;
+    maxEnemySpeed += (float)timer / 10000.0f;
+    if(maxEnemySpeed >= maxMaxEnemySpeed)
+    {
+	maxEnemySpeed = maxMaxEnemySpeed;
+    }
 }
 
 Vector2f Game::getRandomPosition()
@@ -65,7 +73,8 @@ Vector2f Game::getRandomPosition()
 
 Vector2f Game::getRandomVelocity()
 {
-    return Vector2f(((float)rand() / (float)RAND_MAX)*maxEnemySpeed, ((float)rand() / (float)RAND_MAX)*maxEnemySpeed); 
+    return Vector2f((float)rand() / (float)(RAND_MAX/(2*maxEnemySpeed)) - maxEnemySpeed,
+		    (float)rand() / (float)(RAND_MAX/(2*maxEnemySpeed)) - maxEnemySpeed);
 }
 
 void Game::render(SDL_Renderer* renderer)
@@ -89,8 +98,7 @@ void Game::init()
     player->init();
     Enemy::init();
 
-    //Arbitrary numbers for testing; will be time-based eventually
-    enemyCount = 100;
-    maxEnemySpeed = 5;
-
+    enemyCount = 10;
+    maxEnemySpeed = 2.0f;
+    timer = 0;
 }
