@@ -14,7 +14,7 @@ void Game::input(SDL_Event event)
 	switch(event.key.keysym.sym)
 	{
 	case SDLK_ESCAPE:
-	    Application::getInstance().stop();
+	    Application::getInstance().changeState(GameState::MENU);
 	    break;
 	}
     }

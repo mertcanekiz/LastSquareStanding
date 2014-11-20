@@ -29,6 +29,19 @@ void Player::input(SDL_Event event)
 	case SDLK_a:
 	    move[3] = true;
 	    break;
+	case SDLK_UP:
+	    move[0] = true;
+	    break;
+	case SDLK_RIGHT:
+	    move[1] = true;
+	    break;
+	case SDLK_DOWN:
+	    move[2] = true;
+	    break;
+	case SDLK_LEFT:
+	    move[3] = true;
+	    break;
+	    
 	}
     }
 
@@ -46,6 +59,18 @@ void Player::input(SDL_Event event)
 	    move[2] = false;
 	    break;
 	case SDLK_a:
+	    move[3] = false;
+	    break;
+	case SDLK_UP:
+	    move[0] = false;
+	    break;
+	case SDLK_RIGHT:
+	    move[1] = false;
+	    break;
+	case SDLK_DOWN:
+	    move[2] = false;
+	    break;
+	case SDLK_LEFT:
 	    move[3] = false;
 	    break;
 	}	
