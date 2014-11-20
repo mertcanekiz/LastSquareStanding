@@ -3,7 +3,7 @@
 
 SDL_Texture* Enemy::enemyImage = nullptr;
 
-Enemy::Enemy(int x, int y, float vx, float vy) : position(x, y), size(WIDTH, HEIGHT), velocity(vx, vy)
+Enemy::Enemy(Vector2f position, Vector2f velocity) : position(position), velocity(velocity)
 {
 
 }
@@ -20,5 +20,9 @@ void Enemy::render(SDL_Renderer* renderer)
 	enemyImage = Graphics::loadTexture(renderer, "res/game/enemy.png");
     }
 
-    Graphics::renderTexture(renderer, enemyImage, (int)position.getX(), (int)position.getY());
+    if(position.getX() > -WIDTH && position.getX() <= Application::SCREEN_WIDTH
+       && position.getY() > -HEIGHT && position.getY() <= Application::SCREEN_HEIGHT)
+    {
+	Graphics::renderTexture(renderer, enemyImage, (int)position.getX(), (int)position.getY());
+    }
 }

@@ -9,10 +9,14 @@ class Enemy
 {
 
 public:
-    Enemy(int, int, float, float);
+    Enemy(Vector2f, Vector2f);
 
     static const int WIDTH = 16;
     static const int HEIGHT = 16;
+
+    inline float getX() { return position.getX(); }
+    inline float getY() { return position.getY(); }
+    inline void setPosition(Vector2f v) { position = v; }
 
     void update(float);
     void render(SDL_Renderer*);
