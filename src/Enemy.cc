@@ -15,14 +15,14 @@ void Enemy::update(float delta)
 
 void Enemy::render(SDL_Renderer* renderer)
 {
+	Graphics::renderTexture(renderer, enemyImage, (int)position.getX(), (int)position.getY());
+
+}
+
+void Enemy::init()
+{
     if(enemyImage == nullptr)
     {
-	enemyImage = Graphics::loadTexture(renderer, "res/game/enemy.png");
-    }
-
-    if(position.getX() > -WIDTH && position.getX() <= Application::SCREEN_WIDTH
-       && position.getY() > -HEIGHT && position.getY() <= Application::SCREEN_HEIGHT)
-    {
-	Graphics::renderTexture(renderer, enemyImage, (int)position.getX(), (int)position.getY());
+	enemyImage = Graphics::loadTexture(Application::getInstance().getRenderer(), "res/game/enemy.png");
     }
 }

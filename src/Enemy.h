@@ -20,6 +20,7 @@ public:
 
     void update(float);
     void render(SDL_Renderer*);
+    static void init();
 
 private:
     static SDL_Texture* enemyImage;

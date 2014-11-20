@@ -4,7 +4,7 @@
 Game::Game(int id) : GameState(id)
 {
     backgroundImage = nullptr;
-    srand(time(0));
+    srand(time(0)); //Seed the random number generator
 }
 
 void Game::input(SDL_Event event)
@@ -27,13 +27,15 @@ void Game::update(float delta)
     for(auto &e : enemies)
     {
 	e.update(delta);
-	if(e.getX() < -Enemy::WIDTH- 5 || e.getX() >= Application::SCREEN_WIDTH + Enemy::WIDTH + 5
-	   || e.getY() < -Enemy::HEIGHT - 5 || e.getY() >= Application::SCREEN_HEIGHT + Enemy::HEIGHT + 5)
+	//5 is an arbitrary small number to seperate out-of-bounds enemies from newly generated enemies
+	if(e.getX() + Enemy::WIDTH + 5 < 0 || e.getX() >= Application::SCREEN_WIDTH + Enemy::WIDTH + 5
+	   || e.getY() + Enemy::WIDTH + 5 < 0 || e.getY() >= Application::SCREEN_HEIGHT + Enemy::HEIGHT + 5)
 	{
+	    //Reposition the enemy if it went out of screen
 	    e.setPosition(getRandomPosition());
 	}
     }
-
+    
     if(enemies.size() < enemyCount)
     {
 	enemies.push_back(Enemy(getRandomPosition(), getRandomVelocity()));
@@ -42,11 +44,12 @@ void Game::update(float delta)
 
 Vector2f Game::getRandomPosition()
 {
+    //Generate a Vector2f with values right outside of the screen for enemy generation
     int randomIndex = rand() % 4;
     switch(randomIndex)
     {
     case 0:
-	return Vector2f(-Enemy::HEIGHT, ((float)rand() / (float)RAND_MAX)*Application::SCREEN_HEIGHT);
+	return Vector2f(-Enemy::HEIGHT, ((float)rand() / (float)RAND_MAX)*Application::SCREEN_HEIGHT); 
 	break;
     case 1:
 	return Vector2f(((float)rand() / (float)RAND_MAX)*Application::SCREEN_WIDTH, -Enemy::HEIGHT);
@@ -77,15 +80,17 @@ void Game::render(SDL_Renderer* renderer)
 
 void Game::init()
 {
-
     if(backgroundImage == nullptr)
     {
 	backgroundImage = Graphics::loadTexture(Application::getInstance().getRenderer(), "res/game/background.png");
     }
+    
     player = new Player();
     player->init();
+    Enemy::init();
 
-    enemyCount = 255;
+    //Arbitrary numbers for testing; will be time-based eventually
+    enemyCount = 100;
     maxEnemySpeed = 5;
 
 }
