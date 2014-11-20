@@ -18,21 +18,30 @@ void Game::input(SDL_Event event)
 	    break;
 	}
     }
-    player->input(event);
+    player.input(event);
 }
 
 void Game::update(float delta)
 {
-    player->update(delta);
+    player.update(delta);
     for(auto &e : enemies)
     {
 	e.update(delta);
 	//5 is an arbitrary small number to seperate out-of-bounds enemies from newly generated enemies
-	if(e.getX() + Enemy::WIDTH + 5 < 0 || e.getX() >= Application::SCREEN_WIDTH + Enemy::WIDTH + 5
-	   || e.getY() + Enemy::WIDTH + 5 < 0 || e.getY() >= Application::SCREEN_HEIGHT + Enemy::HEIGHT + 5)
+	if(e.getPosition().getX() + Enemy::WIDTH + 5 < 0 || e.getPosition().getX() >= Application::SCREEN_WIDTH + Enemy::WIDTH + 5
+	   || e.getPosition().getY() + Enemy::WIDTH + 5 < 0 || e.getPosition().getY() >= Application::SCREEN_HEIGHT + Enemy::HEIGHT + 5)
 	{
 	    //Reposition the enemy if it went out of screen
 	    e.setPosition(getRandomPosition());
+	}
+
+	if(player.getPosition().getX() + Player::WIDTH > e.getPosition().getX()
+	   && player.getPosition().getX() < e.getPosition().getX() + Enemy::WIDTH
+	   && player.getPosition().getY() + Player::HEIGHT >= e.getPosition().getY()
+	   && player.getPosition().getY() < e.getPosition().getY() + Enemy::HEIGHT)
+	{
+	    
+	    Application::getInstance().changeState(GameState::MENU);
 	}
     }
     
@@ -40,6 +49,7 @@ void Game::update(float delta)
     {
 	enemies.push_back(Enemy(getRandomPosition(), getRandomVelocity()));
     }
+
     
     timer++;
     enemyCount = timer / 100;
@@ -80,7 +90,7 @@ Vector2f Game::getRandomVelocity()
 void Game::render(SDL_Renderer* renderer)
 {
     Graphics::renderTexture(renderer, backgroundImage, 0, 0);
-    player->render(renderer);
+    player.render(renderer);
     for(auto &e : enemies)
     {
 	e.render(renderer);
@@ -94,9 +104,10 @@ void Game::init()
 	backgroundImage = Graphics::loadTexture(Application::getInstance().getRenderer(), "res/game/background.png");
     }
     
-    player = new Player();
-    player->init();
+    player.init();
     Enemy::init();
+
+    enemies.clear();
 
     enemyCount = 10;
     maxEnemySpeed = 2.0f;

@@ -14,8 +14,7 @@ public:
     static const int WIDTH = 16;
     static const int HEIGHT = 16;
 
-    inline float getX() { return position.getX(); }
-    inline float getY() { return position.getY(); }
+    inline Vector2f getPosition() const { return position; }
     inline void setPosition(Vector2f v) { position = v; }
 
     void update(float);

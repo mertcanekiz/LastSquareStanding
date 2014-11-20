@@ -14,7 +14,7 @@ class Game : public GameState
 
 public:
     Game(int);
-    virtual ~Game() { delete player; }
+    virtual ~Game() { }
 
     void init();
     void input(SDL_Event);
@@ -26,7 +26,7 @@ private:
     Vector2f getRandomPosition();
     Vector2f getRandomVelocity();
        
-    Player* player;
+    Player player;
     std::vector<Enemy> enemies;
     SDL_Texture* backgroundImage;
     int enemyCount, timer;
