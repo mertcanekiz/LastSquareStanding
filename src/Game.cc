@@ -35,6 +35,7 @@ void Game::update(float delta)
 	    e.setPosition(getRandomPosition());
 	}
 
+	//Collision check between enemy and player
 	if(player.getPosition().getX() + Player::WIDTH > e.getPosition().getX()
 	   && player.getPosition().getX() < e.getPosition().getX() + Enemy::WIDTH
 	   && player.getPosition().getY() + Player::HEIGHT >= e.getPosition().getY()
@@ -42,6 +43,7 @@ void Game::update(float delta)
 	{
 	    
 	    Application::getInstance().changeState(GameState::MENU);
+	    printf("%i\n", timer); //Temporary print for displaying score
 	}
     }
     
