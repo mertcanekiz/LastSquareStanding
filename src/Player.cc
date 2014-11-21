@@ -11,7 +11,7 @@ Player::Player() : size(WIDTH, HEIGHT)
 void Player::input(SDL_Event event)
 {
 
-    //Set movement flags according to the keys that are pressed (w, a, s, d)
+    //Set movement flags according to the keys that are pressed (w, a, s, d or arrow keys)
     
     if(event.type == SDL_KEYDOWN)
     {
@@ -158,7 +158,6 @@ void Player::init()
     }
     if(playerImage == nullptr)
     {
-	//load the image only if it isn't loaded yet
 	playerImage = Graphics::loadTexture(Application::getInstance().getRenderer(), "res/game/player.png"); 
     }
 }
