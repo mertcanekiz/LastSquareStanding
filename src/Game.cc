@@ -85,6 +85,7 @@ Vector2f Game::getRandomPosition()
 
 Vector2f Game::getRandomVelocity()
 {
+    //Random x and y velocities for enemies between (-maxEnemySpeed) and (+maxEnemySpeed)
     return Vector2f((float)rand() / (float)(RAND_MAX/(2*maxEnemySpeed)) - maxEnemySpeed,
 		    (float)rand() / (float)(RAND_MAX/(2*maxEnemySpeed)) - maxEnemySpeed);
 }
@@ -111,7 +112,8 @@ void Game::init()
 
     enemies.clear();
 
-    enemyCount = 10;
-    maxEnemySpeed = 2.0f;
+    //Start with 10 enemies and max speed 2
+    enemyCount = 10;  
+    maxEnemySpeed = 2.0f; 
     timer = 0;
 }
