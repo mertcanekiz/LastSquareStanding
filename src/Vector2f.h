@@ -11,8 +11,8 @@ public:
     void add(float, float);
     void add(Vector2f);
 
-    inline float getX() { return x; }
-    inline float getY() { return y; }
+    inline float getX() const { return x; }
+    inline float getY() const { return y; }
     inline void setX(float x) { this->x = x; }
     inline void setY(float y) { this->y = y; }
 

@@ -23,7 +23,7 @@ public:
     static GameState* getStateByID(int);
     static void cleanUp();
 
-    inline int getID() { return id; }
+    inline int getID() const { return id; }
 
     virtual void init() = 0;
     virtual void input(SDL_Event) = 0;

@@ -19,15 +19,15 @@ public:
     static const int WIDTH = 16;
     static const int HEIGHT = 16;
 
-    inline Vector2f getPosition() { return position; }
-    inline Vector2f getSize() { return size; }
+    inline Vector2f getPosition() const { return position; }
+    inline Vector2f getSize() const { return size; }
 
 private:
     SDL_Texture* playerImage;
 
-    Vector2f velocity;
     Vector2f position;
     Vector2f size;
+    Vector2f velocity;    
     const float moveSpeed = 5.0f;
     bool move[4];
     
