@@ -17,9 +17,16 @@ void Menu::input(SDL_Event event)
     int x = event.motion.x;
     int y = event.motion.y;
 
-    if(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
+    if(event.type == SDL_KEYDOWN)
     {
-	Application::getInstance().stop();
+	if(event.key.keysym.sym == SDLK_ESCAPE)
+	{
+	    Application::getInstance().stop();
+	}
+	if(event.key.keysym.sym == SDLK_SPACE)
+	{
+	    Application::getInstance().changeState(GameState::GAME);
+	}
     }
 
     if(event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
