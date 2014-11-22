@@ -2,6 +2,11 @@ LastSquareStanding
 ==
 Open Source C++ Game
 
+##Requirements##
+
+CMake (Version 2.8 or higher)
+SDL2 and SDL2_image
+
 ##How to Build##
 
 ###Linux/Unix and Mac OSX###
