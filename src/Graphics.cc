@@ -16,7 +16,7 @@ bool Graphics::init()
 	return false;
     }
 
-    font = TTF_OpenFont("res/fonts/FreeMonoBold.ttf", 20);
+    font = TTF_OpenFont("res/fonts/FreeMonoBold.ttf", 13);
 
     if(font == nullptr)
     {
@@ -27,9 +27,9 @@ bool Graphics::init()
     return true;
 }
 
-SDL_Texture* Graphics::createTextureFromText(SDL_Renderer* renderer, const char* text, SDL_Color color)
+SDL_Texture* Graphics::createTextureFromText(SDL_Renderer* renderer, std::string text, SDL_Color color)
 {
-    SDL_Surface* textSurface = TTF_RenderText_Solid(font, text, color);
+    SDL_Surface* textSurface = TTF_RenderText_Blended(font, text.c_str(), color);
     SDL_Texture* texture = nullptr;
     if(textSurface == nullptr)
     {

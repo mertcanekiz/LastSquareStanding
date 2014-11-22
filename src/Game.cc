@@ -101,6 +101,7 @@ void Game::render(SDL_Renderer* renderer)
     {
 	e.render(renderer);
     }
+    Graphics::renderTexture(renderer, Graphics::createTextureFromText(renderer, std::to_string(timer), color_white), Application::SCREEN_WIDTH - 50, 5);
 }
 
 void Game::init()
