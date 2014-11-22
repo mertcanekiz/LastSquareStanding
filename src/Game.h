@@ -29,7 +29,7 @@ private:
     Player player;
     std::vector<Enemy> enemies;
     SDL_Texture* backgroundImage;
-    int enemyCount, timer;
+    unsigned int enemyCount, timer;
     float maxEnemySpeed;
     const float maxMaxEnemySpeed = 7.0f;
     

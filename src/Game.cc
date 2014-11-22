@@ -81,6 +81,9 @@ Vector2f Game::getRandomPosition()
 	return Vector2f(((float)rand() / (float)RAND_MAX)*Application::SCREEN_WIDTH, Application::SCREEN_HEIGHT + Enemy::HEIGHT);
 	break;
     }
+
+    //Unreachable code, to satisfy compiler warning
+    return Vector2f();
 }
 
 Vector2f Game::getRandomVelocity()

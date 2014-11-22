@@ -1,4 +1,4 @@
-set(CMAKE_CXX_FLAGS "-Wall -std=c++11")
+set(CMAKE_CXX_FLAGS "-Wall -Wno-write-strings -std=c++11")
 file(GLOB SRCS *.cc *.h)
 add_executable(${PROJECT_NAME} ${SRCS})
 set(CMAKE_DIR "../cmake")
