@@ -76,6 +76,8 @@ bool Application::initialize()
 	return false;
     }
 
+    
+
     window = SDL_CreateWindow("Last Square Standing v0.1", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			      SCREEN_WIDTH, SCREEN_HEIGHT, 0);
 
@@ -96,7 +98,7 @@ bool Application::initialize()
 	return 0;
     }
 
-    return true;
+    return Graphics::init();
 }
 
 void Application::cleanUp()
