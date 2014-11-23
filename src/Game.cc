@@ -41,9 +41,8 @@ void Game::update(float delta)
 	   && player.getPosition().getY() + Player::HEIGHT >= e.getPosition().getY()
 	   && player.getPosition().getY() < e.getPosition().getY() + Enemy::HEIGHT)
 	{
-	    
+	    Application::getInstance().addScore(timer);	    
 	    Application::getInstance().changeState(GameState::MENU);
-	    printf("%i\n", timer); //Temporary print for displaying score
 	}
     }
     
@@ -101,7 +100,7 @@ void Game::render(SDL_Renderer* renderer)
     {
 	e.render(renderer);
     }
-    Graphics::renderTexture(renderer, Graphics::createTextureFromText(renderer, std::to_string(timer), color_white), Application::SCREEN_WIDTH - 50, 5);
+    Graphics::renderTexture(renderer, Graphics::createTextureFromText(renderer, std::to_string(timer), color_blue), Application::SCREEN_WIDTH - 50, 5);
 }
 
 void Game::init()

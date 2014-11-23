@@ -81,6 +81,9 @@ void Menu::render(SDL_Renderer* renderer)
     {
 	b.render(renderer);
     }
+    Graphics::renderTexture(renderer, scoreText, 5, Application::SCREEN_HEIGHT - 40);
+    Graphics::renderTexture(renderer, highScoreText, 5, Application::SCREEN_HEIGHT - 20);
+
 }
 
 void Menu::init()
@@ -93,4 +96,7 @@ void Menu::init()
     {
 	b.init();
     }
+    scoreText = Graphics::createTextureFromText(Application::getInstance().getRenderer(), std::string("Previous score: ") + std::to_string(Application::getInstance().getPreviousScore()), color_white);
+    highScoreText = Graphics::createTextureFromText(Application::getInstance().getRenderer(), std::string("High score: ") + std::to_string(Application::getInstance().getHighScore()), color_white);
+					     
 }

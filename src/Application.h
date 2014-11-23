@@ -1,9 +1,10 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <SDL2/SDL.h>
+#include <algorithm>
 #include <cstdio>
-
+#include <fstream>
+#include <SDL2/SDL.h>
 #include "GameState.h"
 
 class Application
@@ -23,6 +24,10 @@ public:
     static const int SCREEN_HEIGHT = 360;
 
     inline SDL_Renderer* getRenderer() const { return renderer; }
+    inline void addScore(unsigned int score) { scores.push_back(score); }
+    unsigned int getPreviousScore() const;
+    unsigned int getHighScore() const;
+
 
 private:
     Application() { };
@@ -37,6 +42,9 @@ private:
     bool running;
 
     GameState* currentState;
+
+    std::vector<unsigned int> scores;
+    std::vector<unsigned int> newScores;
 
     Application(const Application&);
     void operator=(const Application&);

@@ -20,6 +20,8 @@ public:
 
 private:
     SDL_Texture* menubg;
+    SDL_Texture* scoreText;
+    SDL_Texture* highScoreText;
     Button buttons[NUM_BUTTONS];
 
 };

@@ -75,7 +75,6 @@ bool Application::initialize()
 	printf("Could not initialize SDL: %s\n", SDL_GetError());
 	return false;
     }
-
     
 
     window = SDL_CreateWindow("Last Square Standing v0.1", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -85,7 +84,7 @@ bool Application::initialize()
     {
 	printf("Could not create window: %s\n", SDL_GetError());
 	SDL_Quit();
-	return 0;
+	return false;
     }
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -95,14 +94,66 @@ bool Application::initialize()
 	SDL_DestroyWindow(window);
 	printf("Could not create renderer: %s\n", SDL_GetError());
 	SDL_Quit();
-	return 0;
+	return false;
     }
 
-    return Graphics::init();
+    if(!Graphics::init())
+    {
+	return false;
+    }
+
+    //Load scores from scores.txt file and store in scores vector
+    std::ifstream ifs("scores.txt");
+    int tmp_score;
+
+    while(ifs >> tmp_score)
+    {
+	scores.push_back(tmp_score);
+    }
+
+    ifs.close();
+
+    for(auto &i : scores)
+    {
+	printf("%i\n", i);
+    }
+
+    //Return true if all of the above is done
+    return true;
+}
+
+unsigned int Application::getPreviousScore() const
+{
+    if(scores.size() != 0)
+    {
+	return scores[scores.size() - 1];
+    }
+
+    return 0;
+}
+
+unsigned int Application::getHighScore() const
+{
+    std::vector<unsigned int> tmpScores;
+    tmpScores = scores;
+    if(tmpScores.size() != 0)
+    {
+     std::sort(tmpScores.begin(), tmpScores.end());
+     return tmpScores[tmpScores.size()-1];
+    }
+    return 0;
 }
 
 void Application::cleanUp()
 {
+    //Replace 'scores.txt' file with the new scores
+    std::ofstream ofs("scores.txt", std::ofstream::out);
+    for(auto &i : scores)
+    {
+	ofs << i << "\n";
+    }
+    ofs.close();
+    
     GameState::cleanUp();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
