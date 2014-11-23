@@ -81,9 +81,11 @@ void Menu::render(SDL_Renderer* renderer)
     {
 	b.render(renderer);
     }
-    Graphics::renderTexture(renderer, scoreText, 5, Application::SCREEN_HEIGHT - 40);
-    Graphics::renderTexture(renderer, highScoreText, 5, Application::SCREEN_HEIGHT - 20);
-
+    if(scoreText != nullptr && highScoreText != nullptr)
+    {
+	Graphics::renderTexture(renderer, scoreText, 5, Application::SCREEN_HEIGHT - 40);
+    	Graphics::renderTexture(renderer, highScoreText, 5, Application::SCREEN_HEIGHT - 20);
+    }
 }
 
 void Menu::init()
@@ -92,11 +94,32 @@ void Menu::init()
     {
 	menubg = Graphics::loadTexture(Application::getInstance().getRenderer(), "res/menu/menubg.png");
     }
+    
     for(auto &b : buttons)
     {
 	b.init();
     }
-    scoreText = Graphics::createTextureFromText(Application::getInstance().getRenderer(), std::string("Previous score: ") + std::to_string(Application::getInstance().getPreviousScore()), color_white);
-    highScoreText = Graphics::createTextureFromText(Application::getInstance().getRenderer(), std::string("High score: ") + std::to_string(Application::getInstance().getHighScore()), color_white);
+    
+    if(Application::getInstance().getPreviousScore() == 0)
+    {
+	scoreText = nullptr;
+    }
+    else
+    {
+	scoreText = Graphics::createTextureFromText(Application::getInstance().getRenderer(),
+						    std::string("Previous score: ") + std::to_string(Application::getInstance().getPreviousScore()),
+						    color_black);
+    }
+    
+    if(Application::getInstance().getHighScore() == 0)
+    {
+	highScoreText = nullptr;
+    }
+    else
+    {
+	highScoreText = Graphics::createTextureFromText(Application::getInstance().getRenderer(),
+							std::string("High score: ") + std::to_string(Application::getInstance().getHighScore()),
+							color_red);
+    }
 					     
 }

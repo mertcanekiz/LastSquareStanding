@@ -28,7 +28,7 @@ private:
     Vector2f position;
     Vector2f size;
     Vector2f velocity;    
-    const float moveSpeed = 5.0f;
+    const float moveSpeed = 3.7f;
     bool move[4];
     
 };

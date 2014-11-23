@@ -54,7 +54,7 @@ void Game::update(float delta)
     
     timer++;
     enemyCount = timer / 100;
-    maxEnemySpeed += (float)timer / 10000.0f;
+    maxEnemySpeed += (float)timer / 50000.0f;
     if(maxEnemySpeed >= maxMaxEnemySpeed)
     {
 	maxEnemySpeed = maxMaxEnemySpeed;

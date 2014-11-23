@@ -21,8 +21,10 @@ public:
     static GameState* menu;
     static GameState* game;
 
-    const SDL_Color color_blue = { 0x00, 0x6f, 0xb0 };
+    const SDL_Color color_blue  = { 0x00, 0x6f, 0xb0 };
+    const SDL_Color color_red   = { 0xff, 0x00, 0x00 };
     const SDL_Color color_white = { 0xff, 0xff, 0xff };
+    const SDL_Color color_black = { 0x00, 0x00, 0x00 };
 
     static GameState* getStateByID(int);
     static void cleanUp();
