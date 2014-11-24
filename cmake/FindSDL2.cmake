@@ -1,6 +1,5 @@
 SET( SDL2_SEARCH_PATHS
   ${SDL2_ROOT_DIR}# SDL2!
-  ./lib/SDL2
   $ENV{PROGRAMFILES}/SDL2# WINDOWS
   "$ENV{PROGRAMFILES(X86)}/SDL2"# WINDOWS
   ~/Library/Frameworks# MAC
@@ -13,20 +12,18 @@ SET( SDL2_SEARCH_PATHS
   /opt/csw# Blastwave
 )
 
-FIND_PATH( SDL2_INCLUDE_DIRS
-  NAMES
-  SDL.h SDL2/SDL.h SDL_image.h SDL2/SDL_image.h
+FIND_PATH( SDL2_INCLUDE_DIRS SDL.h
   PATHS
   ${SDL2_SEARCH_PATHS}
   PATH_SUFFIXES
-  include
+  include/SDL2 include
   DOC
   "The directory where SDL.h resides"
 )
 
 FIND_LIBRARY( SDL2_LIBRARIES
   NAMES
-  SDL2 SDL2main SDL2_image
+  SDL2 SDL2main
   PATHS
   ${SDL2_SEARCH_PATHS}
   PATH_SUFFIXES

@@ -5,7 +5,7 @@ Open Source C++ Game
 ##Requirements##
 
 - CMake (Version 2.8 or higher)
-- SDL2 and SDL2_image
+- SDL2, SDL2_image and SDL2_ttf
 
 ##How to Build##
 

@@ -1,4 +1,6 @@
 SET(SDL2IMAGE_SEARCH_PATHS
+  $ENV{PROGRAMFILES}/SDL2# WINDOWS
+  "$ENV{PROGRAMFILES(X86)}/SDL2"# WINDOWS
   ~/Library/Frameworks
   /Library/Frameworks
   /usr/local
