@@ -45,20 +45,20 @@ void Game::update(float delta)
 	    Application::getInstance().changeState(GameState::MENU);
 	}
     }
+
+    enemyCount = timer / 100;
+    maxEnemySpeed += (float)timer / 100000.0f;
+    if(maxEnemySpeed >= maxMaxEnemySpeed)
+    {
+	maxEnemySpeed = maxMaxEnemySpeed;
+    }
     
     if(enemies.size() < enemyCount)
     {
 	enemies.push_back(Enemy(getRandomPosition(), getRandomVelocity()));
     }
-
     
     timer++;
-    enemyCount = timer / 100;
-    maxEnemySpeed += (float)timer / 50000.0f;
-    if(maxEnemySpeed >= maxMaxEnemySpeed)
-    {
-	maxEnemySpeed = maxMaxEnemySpeed;
-    }
 }
 
 Vector2f Game::getRandomPosition()
@@ -101,6 +101,8 @@ void Game::render(SDL_Renderer* renderer)
 	e.render(renderer);
     }
     Graphics::renderTexture(renderer, Graphics::createTextureFromText(renderer, std::to_string(timer), color_blue), Application::SCREEN_WIDTH - 50, 5);
+    Graphics::renderTexture(renderer, Graphics::createTextureFromText(renderer, std::to_string(enemyCount), color_blue), Application::SCREEN_WIDTH - 50, 20);
+    Graphics::renderTexture(renderer, Graphics::createTextureFromText(renderer, std::to_string(maxEnemySpeed), color_blue), Application::SCREEN_WIDTH -50, 35);
 }
 
 void Game::init()
