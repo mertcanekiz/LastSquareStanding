@@ -113,11 +113,6 @@ bool Application::initialize()
 
     ifs.close();
 
-    for(auto &i : scores)
-    {
-	printf("%i\n", i);
-    }
-
     //Return true if all of the above is done
     return true;
 }
